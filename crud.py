@@ -22,7 +22,7 @@ def get_author(db: Session, author_id: int):
     return (
         db.scalars(
             select(models.DBAuthor)
-            .where(models.DBBook.author_id == author_id)
+            .where(models.DBAuthor.id == author_id)
         ).first()
     )
 
@@ -58,7 +58,7 @@ def get_all_books(
 
     if author_id is not None:
         queryset = (
-            queryset.where(models.DBAuthor.id == author_id)
+            queryset.where(models.DBBook.author_id == author_id)
         )
     return db.scalars(queryset).all()
 
