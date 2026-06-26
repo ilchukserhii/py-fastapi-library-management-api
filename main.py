@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
+from database import Base, engine
 
 import schemas
 import crud
@@ -7,6 +8,8 @@ from crud import get_author_by_name
 from database import SessionLocal
 
 app = FastAPI()
+
+Base.metadata.create_all(bind=engine)
 
 
 def get_db() -> Session:

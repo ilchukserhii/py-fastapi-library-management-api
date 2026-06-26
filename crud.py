@@ -22,7 +22,7 @@ def get_author(db: Session, author_id: int):
     return (
         db.scalars(
             select(models.DBAuthor)
-            .where(models.DBAuthor.id == author_id)
+            .where(models.DBBook.author_id == author_id)
         ).first()
     )
 
